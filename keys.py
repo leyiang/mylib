@@ -3,7 +3,10 @@ from pynput import keyboard
 def is_special_pressed(which, key):
     return key == keyboard.Key[ which ]
 
-special_chars = ["enter", "esc", "space", "f1", "cmd"]
+special_chars = [
+    "enter", "esc", "space", "f1", "cmd",
+    "media_next", "up", "down", "left", "right",
+]
 
 def is_pressed(which, key):
     if which == " ":
@@ -18,4 +21,10 @@ def is_pressed(which, key):
     except AttributeError:
         return False
 
+    return False
+
+def is_some_pressed(which_list, key):
+    for which in which_list:
+        if is_pressed(which, key):
+            return True
     return False
